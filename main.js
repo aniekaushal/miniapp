@@ -55,12 +55,12 @@ window.onload = function () {
     google.accounts.id.initialize({
         client_id: "409306020032-rvmvr5n9cua04mqceb19fq4grn4ga2s4.apps.googleusercontent.com",
         callback: handleCredentialResponse,
-        ux_mode: "popup",  // Use popup mode instead of redirect
-        itp_support: true  // Support for third-party cookies
+        ux_mode: "redirect", // Change to "redirect"
+        itp_support: true
     });
     google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
         { theme: "outline", size: "large" }
     );
-    google.accounts.id.prompt();  // Show the One Tap dialog
+    google.accounts.id.prompt();
 }
