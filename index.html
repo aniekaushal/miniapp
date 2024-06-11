@@ -25,33 +25,12 @@
         <p>This is a simple greeting mini app.</p>
         <div id="g_id_onload"
             data-client_id="409306020032-rvmvr5n9cua04mqceb19fq4grn4ga2s4.apps.googleusercontent.com"
-            data-login_uri="https://aniekaushal.github.io/miniapp/"
+            data-login_uri="https://aniekaushal.github.io/miniapp"
             data-auto_prompt="false">
         </div>
-        <div class="g_id_signin" data-type="standard"></div>
+        <div id="buttonDiv" class="g_id_signin" data-type="standard"></div>
     </div>
-    <script>
-        function handleCredentialResponse(response) {
-            const data = jwt_decode(response.credential);
-            console.log("ID: " + data.sub);
-            console.log('Full Name: ' + data.name);
-            console.log('Given Name: ' + data.given_name);
-            console.log('Family Name: ' + data.family_name);
-            console.log("Image URL: " + data.picture);
-            console.log("Email: " + data.email);
-        }
-        window.onload = function () {
-            google.accounts.id.initialize({
-                client_id: "YOUR_CLIENT_ID",
-                callback: handleCredentialResponse
-            });
-            google.accounts.id.renderButton(
-                document.getElementById("buttonDiv"),
-                { theme: "outline", size: "large" }  // customization attributes
-            );
-            google.accounts.id.prompt(); // also display the One Tap dialog
-        }
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-decode/2.2.0/jwt-decode.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
