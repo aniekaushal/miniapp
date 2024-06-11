@@ -33,13 +33,26 @@ function decodeJWT(token) {
   }
 
 function handleCredentialResponse(response) {
-    const data = decodeJWT(response.credential).payload;
-    console.log("ID: " + data.sub);
-    console.log('Full Name: ' + data.name);
-    console.log('Given Name: ' + data.given_name);
-    console.log('Family Name: ' + data.family_name);
-    console.log("Image URL: " + data.picture);
-    console.log("Email: " + data.email);
+    const data = decodeJWT(response.credential).payload
+    displayUserInfo(data);
+}
+
+function displayUserInfo(data) {
+    document.getElementById('user-image').src = data.picture;
+    document.getElementById('user-name').innerText = `Name: ${data.name}`;
+    document.getElementById('user-email').innerText = `Email: ${data.email}`;
+
+    document.getElementById('buttonDiv').style.display = 'none';
+    document.getElementById('user-info').style.display = 'block';
+}
+
+function logout() {
+    document.getElementById('user-image').src = '';
+    document.getElementById('user-name').innerText = '';
+    document.getElementById('user-email').innerText = '';
+
+    document.getElementById('buttonDiv').style.display = 'block';
+    document.getElementById('user-info').style.display = 'none';
 }
 
 window.onload = function () {
