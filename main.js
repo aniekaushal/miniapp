@@ -27,11 +27,13 @@ function decodeJWT(token) {
 }
 
 function handleCredentialResponse(response) {
+    console.log('Credential Response:', response);
     const data = decodeJWT(response.credential).payload;
     displayUserInfo(data);
 }
 
 function displayUserInfo(data) {
+    console.log('User Info:', data);
     document.getElementById('user-image').src = data.picture;
     document.getElementById('user-name').innerText = `Name: ${data.name}`;
     document.getElementById('user-email').innerText = `Email: ${data.email}`;
@@ -53,11 +55,12 @@ window.onload = function () {
     google.accounts.id.initialize({
         client_id: "409306020032-rvmvr5n9cua04mqceb19fq4grn4ga2s4.apps.googleusercontent.com",
         callback: handleCredentialResponse,
-        ux_mode: "redirect"  // Use popup mode instead of redirect
+        ux_mode: "popup",  // Use popup mode instead of redirect
+        itp_support: true  // Support for third-party cookies
     });
     google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
         { theme: "outline", size: "large" }
     );
-    google.accounts.id.prompt();
+    google.accounts.id.prompt();  // Show the One Tap dialog
 }
